@@ -10,7 +10,6 @@ import java.util.List;
 public class SimpleLinearRegressionCalculator implements LinearRegressionCalculator {
 
     public double calculateLinearRegressionSlope(List<BigDecimal> coinPrices) {
-
         SimpleRegression simpleRegression = new SimpleRegression();
         for (int i = 0; i < coinPrices.size(); i++) {
             simpleRegression.addData(i, coinPrices.get(i).doubleValue());

@@ -45,7 +45,11 @@ public class CoinApiBitcoinService implements BitcoinService {
     private HttpRequest getHttpRequest(LocalDateTime startDateTime, LocalDateTime endDateTime) {
         String url = String.format(URL_TEMPLATE, startDateTime.toLocalDate(), endDateTime.toLocalDate());
         System.out.println(url);
-        return HttpRequest.newBuilder().uri(URI.create(url)).header("X-CoinAPI-Key", API_KEY).GET().build();
+        return HttpRequest.newBuilder()
+                .uri(URI.create(url))
+                .header("X-CoinAPI-Key", API_KEY)
+                .GET()
+                .build();
     }
 
     private String getJsonResponse(HttpRequest request) {

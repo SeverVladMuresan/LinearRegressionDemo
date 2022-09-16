@@ -27,7 +27,6 @@ public class PredictionService {
     ChartService chartService;
 
     public void predictBitcoinUsd(LocalDateTime predictionDate) {
-
         validatePredictionDate(predictionDate);
 
         List<CoinPriceData> pastBitCoinPrices = getPastCoinPriceData();
@@ -40,7 +39,6 @@ public class PredictionService {
                 predictedCoinPriceData);
 
         chartService.generateLinearRegressionTimeseriesChart(pastBitCoinPrices, linearRegressionEntries);
-
     }
 
     private void validatePredictionDate(LocalDateTime predictionDate) {
@@ -55,11 +53,10 @@ public class PredictionService {
         return List.of(pastBitCoinPrices.get(0), predictedCoinPriceData);
     }
 
-
     private List<CoinPriceData> getPastCoinPriceData() {
-        LocalDateTime now = LocalDateTime.now();
-        LocalDateTime pastDataStart = now.minus(PAST_DATE_LOOKUP_TIME_AMOUNT);
-        return bitcoinService.getBitcoinPriceInDateTimeRange(pastDataStart, now);
+        LocalDateTime pastDataEnd = LocalDateTime.now();
+        LocalDateTime pastDataStart = pastDataEnd.minus(PAST_DATE_LOOKUP_TIME_AMOUNT);
+        return bitcoinService.getBitcoinPriceInDateTimeRange(pastDataStart, pastDataEnd);
     }
 
     private double calculateLinearRegressionSlope(List<CoinPriceData> pastBitCoinPrices) {

@@ -22,7 +22,7 @@ public class InitializingBean {
     @Value("${coinapi_api_key}")
     private String COINAPI_API_KEY;
 
-    @SuppressWarnings("ResultOfMethodCallIgnored") // The value ot the UUID is not of interest
+    @SuppressWarnings("ResultOfMethodCallIgnored") // The value of the UUID is not of interest
     @EventListener
     public void onApplicationEvent(ContextRefreshedEvent event) {
 
